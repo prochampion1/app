@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_article,   only: [:destroy, :show, :edit, :update]
   # GET /articles
   # GET /articles.json
   def index
@@ -67,10 +66,14 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
+    
+
+private
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :body)
     end
-
-
+    def set_article
+      @article = Article.find_by(id: params[:id])
+    end
 end
