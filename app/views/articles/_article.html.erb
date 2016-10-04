@@ -1,0 +1,20 @@
+<%= link_to 'New Article', new_article_path %>
+<br>
+<div class="row">
+ <div class="col-sm-8>">
+   <% @user.articles.each do |article|%>
+     <div class ="card">
+
+      <div class="card-block">
+       <h4 class="card-title"><%= article.title %></h4>
+        <p class="card-text"><%= @markdown.render(article.body).html_safe %> </p>
+      </div>
+      <div class="card-footer">
+        <%= link_to "Edit", edit_article_path(article), class:'btn btn-warning' %>
+        <%= link_to "Delete", article_path(article.id), method: :delete, class: 'btn btn-danger'%>
+        </div>
+      </div>
+    <%end%>
+</div>
+</div>
+
