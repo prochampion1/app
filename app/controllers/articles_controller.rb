@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   def index
 
     if params[:search]
-      @articles= Article.where("title LIKE ? OR body LIKE ?", "%#{params[:search].try(:downcase)}%", "%#{params[:search].try(:downcase)}%")
+      @articles= Article.where("lower(title)LIKE ? OR lower(body) LIKE ?", "%#{params[:search].try(:downcase)}%", "%#{params[:search].try(:downcase)}%")
 
       @markdown= Redcarpet::Markdown.new(Redcarpet::Render::HTML) 
     else
