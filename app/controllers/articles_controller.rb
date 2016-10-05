@@ -6,12 +6,12 @@ class ArticlesController < ApplicationController
 
     if params[:search]
       @articles= Article.where("lower(title)LIKE ? OR lower(body) LIKE ?", "%#{params[:search].try(:downcase)}%", "%#{params[:search].try(:downcase)}%")
-
+       
       @markdown= Redcarpet::Markdown.new(Redcarpet::Render::HTML) 
     else
-     @articles = Article.all.order(updated_at: :desc)
-     @markdown= Redcarpet::Markdown.new(Redcarpet::Render::HTML)  
-  end
+       @articles = Article.all.order(updated_at: :desc)
+       @markdown= Redcarpet::Markdown.new(Redcarpet::Render::HTML)  
+    end
   end
 
   # GET /articles/1
